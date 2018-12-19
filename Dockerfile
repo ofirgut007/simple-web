@@ -99,14 +99,12 @@ CMD ["nginx", "-g", "daemon off;"]
 
 
 
-WORKDIR /code
-ADD . /code
-RUN touch index.html
+WORKDIR ~/code
+ADD . ~/code
+COPY nginx.conf /etc/nginx/conf.d/override.conf
+RUN touch /usr/share/nginx/html/index.html
 CMD python index.py
 
-
-#COPY ./build /var/www
-#COPY nginx.conf /etc/nginx/nginx.conf
 #ENTRYPOINT ["nginx","-g","daemon off;"]
 
 
